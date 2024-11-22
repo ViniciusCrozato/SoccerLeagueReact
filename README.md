@@ -1,2 +1,0 @@
-# SoccerLeagueReact
-Projeto React Native
