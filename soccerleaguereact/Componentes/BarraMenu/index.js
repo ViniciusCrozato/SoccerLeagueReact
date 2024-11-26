@@ -1,30 +1,29 @@
 import React from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
-import Logo from "../../Images/Logo_soccerLeague.png"; // Importe o logo corretamente
+import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import Logo from "../../Images/Logo_soccerLeague.png"; // Importando a imagem do logo
 
-// BarraMenu como componente de classe ou funcional
+export default function BarraMenu() {
+  return (
+    <View style={styles.nav}>
+      {/* Logo */}
+      <TouchableOpacity style={styles.menuLogo} onPress={() => console.log("Logo pressionado!")}>
+        <Image source={Logo} style={styles.logoSoccerLeague} />
+      </TouchableOpacity>
 
-class BarraMenu extends React.Component {
-  render() {
-    return (
-      <View style={styles.nav}>
-        <TouchableOpacity style={styles.menuLogo} onPress={() => { /* Navegação para a Home */ }}>
-          <Image source={Logo} style={styles.logoSoccerLeague} />
+      {/* Lista de Links */}
+      <View style={styles.menuList}>
+        <TouchableOpacity style={styles.menuItem} onPress={() => console.log("Home pressionado!")}>
+          <Text style={styles.menuLink}>Home</Text>
         </TouchableOpacity>
-        <View style={styles.menuList}>
-          <TouchableOpacity style={styles.menuItem} onPress={() => { /* Navegação para Home */ }}>
-            <Text style={styles.menuLink}>Home</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem} onPress={() => { /* Navegação para CadastroTime */ }}>
-            <Text style={styles.menuLink}>Cadastrar Time</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem} onPress={() => { /* Navegação para ExcluirTime */ }}>
-            <Text style={styles.menuLink}>Excluir Times</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity style={styles.menuItem} onPress={() => console.log("Cadastrar Time pressionado!")}>
+          <Text style={styles.menuLink}>Cadastrar Time</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuItem} onPress={() => console.log("Excluir Times pressionado!")}>
+          <Text style={styles.menuLink}>Excluir Times</Text>
+        </TouchableOpacity>
       </View>
-    );
-  }
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -34,12 +33,13 @@ const styles = StyleSheet.create({
     color: "#fff",
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
-    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)", // Não é suportado nativamente, mas pode ser simulado com outras soluções.
     flexDirection: "row",
     alignItems: "center",
   },
   menuLogo: {
-    margin: "0 30px 0 10px",
+    marginLeft: 10,
+    marginRight: 30,
   },
   logoSoccerLeague: {
     width: 35,
@@ -48,11 +48,12 @@ const styles = StyleSheet.create({
   menuList: {
     flexDirection: "row",
     justifyContent: "center",
-    gap: 20,
     flexWrap: "wrap",
+    gap: 20, // React Native não tem suporte direto para `gap`, então isso pode ser feito com `margin`.
   },
   menuItem: {
-    margin: "0 10px",
+    marginLeft: 10,
+    marginRight: 10,
   },
   menuLink: {
     color: "#fff",
@@ -62,5 +63,3 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
 });
-
-export default BarraMenu;

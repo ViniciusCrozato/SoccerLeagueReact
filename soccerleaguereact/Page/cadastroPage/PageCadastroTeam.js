@@ -1,30 +1,29 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import BarraMenu from '../../Componentes/BarraMenu';  // Certifique-se de que o caminho está correto
-import CadastroTeams from '../../Componentes/CadastroTeams';  // Certifique-se de que o caminho está correto
+import { View, StyleSheet, SafeAreaView } from 'react-native';
+import BarraMenu from "../../Componentes/BarraMenu";
+import CadastroTeams from "../../Componentes/CadastroTeams";
 
 export default function PaginaCadastroTeam() {
   return (
-    <View style={styles.body}>
+    <SafeAreaView style={styles.body}>
       <BarraMenu />
-
+      
       <View style={styles.cadastroSection}>
         <CadastroTeams />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
-// Estilos usando StyleSheet do React Native
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    backgroundColor: '#f9f9f9', // Cor de fundo para o corpo da página
+    backgroundColor: '#230a1b',
+    width: '100%',
   },
   cadastroSection: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
   },
 });

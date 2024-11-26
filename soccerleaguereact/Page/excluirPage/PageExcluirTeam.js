@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Button, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import axios from 'axios';
-import BarraMenu from '../../Componentes/BarraMenu';  // Certifique-se de que o caminho está correto
-import ListaTeams from '../../Componentes/Listateams'; // Certifique-se de que o caminho está correto
+import BarraMenu from '../../Componentes/BarraMenu';
+import ListaTeams from '../../Componentes/Listateams/index'; // Supondo que ListaTeams já esteja adaptado para React Native
 
 export default function PaginaExcluirTeam() {
   const [teams, setTeams] = useState([]);
@@ -11,54 +11,43 @@ export default function PaginaExcluirTeam() {
     carregaTeams();
   }, []);
 
-  // Função para carregar os times da API
   function carregaTeams() {
-    axios
-      .get('https://project-ea-football.onrender.com/teams')
-      .then((res) => {
+    axios.get('https://project-ea-football.onrender.com/teams')
+      .then(res => {
         setTeams(res.data);
-        console.log(res.data);  // Verifica os times carregados
-      })
-      .catch((error) => {
-        console.error('Erro ao carregar os times:', error);
+        console.log(res.data);  // Verifique a resposta para depuração
       });
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.principal}>
       <BarraMenu />
-
+      
       <View style={styles.teamsSection}>
         <Text style={styles.title}>Exclusão de times</Text>
-
-        <ScrollView contentContainerStyle={styles.teamsList}>
+        <ScrollView>
           <ListaTeams teams={teams} carregaTeams={carregaTeams} excluir={true} />
         </ScrollView>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
-// Estilos com StyleSheet do React Native
 const styles = StyleSheet.create({
-  container: {
+  principal: {
     flex: 1,
-    backgroundColor: '#f9f9f9',
+    backgroundColor: '#f2f2f2', // Cor de fundo genérica
   },
   teamsSection: {
-    padding: 20,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 10,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#333',
     textAlign: 'center',
     marginBottom: 20,
-  },
-  teamsList: {
-    paddingBottom: 20,
   },
 });
