@@ -1,17 +1,14 @@
 import React from 'react';
-import { View, StyleSheet, SafeAreaView } from 'react-native';
-import BarraMenu from "../../Componentes/BarraMenu";
-import CadastroTeams from "../../Componentes/CadastroTeams";
+import { View, StyleSheet, ScrollView} from 'react-native';
+import CadastroTeams from "../../Components/CadastroTeams/index";
 
 export default function PaginaCadastroTeam() {
   return (
-    <SafeAreaView style={styles.body}>
-      <BarraMenu />
-      
       <View style={styles.cadastroSection}>
-        <CadastroTeams />
+        <ScrollView>
+            <CadastroTeams />
+        </ScrollView>
       </View>
-    </SafeAreaView>
   );
 }
 

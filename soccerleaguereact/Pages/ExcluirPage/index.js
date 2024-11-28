@@ -1,11 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
+import React, { useEffect, useState, useCallback } from 'react';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { NavigationContainer, useFocusEffect  } from "@react-navigation/native";
 import axios from 'axios';
-import BarraMenu from '../../Componentes/BarraMenu';
-import ListaTeams from '../../Componentes/Listateams/index'; // Supondo que ListaTeams já esteja adaptado para React Native
+import ListaTeams from '../../Components/Listateams/index'; // Supondo que ListaTeams já esteja adaptado para React Native
 
 export default function PaginaExcluirTeam() {
   const [teams, setTeams] = useState([]);
+
+
+  useFocusEffect(
+    useCallback(() => {
+      carregaTeams();
+    }, [])
+  );
 
   useEffect(() => {
     carregaTeams();
@@ -20,16 +27,12 @@ export default function PaginaExcluirTeam() {
   }
 
   return (
-    <SafeAreaView style={styles.principal}>
-      <BarraMenu />
-      
       <View style={styles.teamsSection}>
         <Text style={styles.title}>Exclusão de times</Text>
         <ScrollView>
           <ListaTeams teams={teams} carregaTeams={carregaTeams} excluir={true} />
         </ScrollView>
       </View>
-    </SafeAreaView>
   );
 }
 
